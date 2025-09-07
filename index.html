@@ -89,35 +89,43 @@
       </div>
     </section>
 
-    <main class="w-11/12 mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
-        <!-- catagoty section  -->
-        <aside></aside>
-        <!-- cards in the middle section  -->
-        <main
-          class="md:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-4"
-        ></main>
-        <!-- add to cart summary  -->
-        <aside></aside>
-      </div>
-
-      <!-- campaign section  -->
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
-        <div class="col-span-1"></div>
-        <div class="col-span-3">
-         <div class="flex">
-           <div>
-            <img src="./assets/about.png" alt="" />
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-            deserunt debitis placeat consequatur sed dolorem eum quibusdam nisi?
-            Libero, velit?
-          </p>
-         </div>
+    <section class="bg-[#F0FDF4] py-14">
+      <main class="w-11/12 mx-auto bg-[#F0FDF4]">
+        <h1 class="font-semibold text-3xl text-center">Choose Your Trees</h1>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
+          <!-- catagoty section  -->
+          <aside>
+            <h2 class="font-bold mb-2">Categories</h2>
+            <h2 id="all_trees_btn" class="border border-red-600">All Trees</h2>
+          </aside>
+          <!-- cards in the middle section  -->
+          <main id="card_container" class="md:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <!-- card  -->
+            <!-- js here  -->
+          </main>
+          <!-- add to cart summary  -->
+          <aside></aside>
         </div>
-        <div class="col-span-1"></div>
-      </div>
-    </main>
+
+        <!-- campaign section  -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
+          <div class="col-span-1"></div>
+          <div class="col-span-3">
+            <div class="flex">
+              <div>
+                <img src="./assets/about.png" alt="" />
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Reiciendis deserunt debitis placeat consequatur sed dolorem eum
+                quibusdam nisi? Libero, velit?
+              </p>
+            </div>
+          </div>
+          <div class="col-span-1"></div>
+        </div>
+      </main>
+    </section>
+    <script src="./script.js"></script>
   </body>
 </html>
