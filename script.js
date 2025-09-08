@@ -1,4 +1,5 @@
 const loadAllTrees = () => {
+  manageSpinnner(true);
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((response) => response.json())
     .then((data) => {
@@ -9,6 +10,8 @@ const loadAllTrees = () => {
 const displayAllTrees = (trees) => {
   const cardContainer = document.getElementById("card_container");
   cardContainer.innerHTML = "";
+  manageSpinnner(false);
+
   trees.forEach((tree) => {
     const containerDiv = document.createElement("div");
     containerDiv.innerHTML = `
@@ -68,13 +71,11 @@ const loadAllCatagories = async () => {
   );
   const result = await response.json();
   displayAllCatagories(result.categories);
-  // console.log();
 };
 
 const displayAllCatagories = (items) => {
   const allCatagoriesBtn = document.getElementById("allCatagoriesBtn");
   allCatagoriesBtn.innerHTML = "";
-
   items.forEach((item) => {
     const itemContainerDiv = document.createElement("div");
     itemContainerDiv.innerHTML = `
@@ -85,6 +86,7 @@ const displayAllCatagories = (items) => {
 };
 
 const getTreeByCatagoty = async (id) => {
+  manageSpinnner(true);
   const response = await fetch(
     `https://openapi.programming-hero.com/api/category/${id}`
   );
@@ -95,6 +97,7 @@ const getTreeByCatagoty = async (id) => {
 const displayGetTreeByCatagoty = (treeItems) => {
   const cardContainer = document.getElementById("card_container");
   cardContainer.innerHTML = "";
+  manageSpinnner(false);
   treeItems.forEach((item) => {
     const eachCatagoryDiv = document.createElement("div");
     eachCatagoryDiv.innerHTML = `
@@ -116,6 +119,16 @@ const displayGetTreeByCatagoty = (treeItems) => {
 
     cardContainer.appendChild(eachCatagoryDiv);
   });
+};
+
+const manageSpinnner = (status) => {
+  if (status == true) {
+    document.getElementById("spin_container").classList.remove("hidden");
+    document.getElementById("card_container").classList.add("hidden");
+  } else {
+    document.getElementById("spin_container").classList.add("hidden");
+    document.getElementById("card_container").classList.remove("hidden");
+  }
 };
 
 loadAllCatagories(); // just for check     --

@@ -108,12 +108,20 @@
             </div>
           </aside>
           <!-- cards in the middle section  -->
+          <div
+            id="spin_container"
+            class="flex justify-center items-center col-span-3"
+          >
+            <span class="loading loading-bars loading-xl"></span>
+          </div>
           <main
             id="card_container"
-            class="md:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-4"
+            class="md:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-4 mt-7"
           >
             <!-- card  -->
             <!-- js here  -->
+            <!-- for spinning  -->
+
             <div id="modalContainer"></div>
           </main>
           <!-- add to cart summary  -->
@@ -139,15 +147,10 @@
         </div>
       </main>
     </section>
-
-    <!-- Open the modal using ID.showModal() method -->
-    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
-    <!-- Open the modal using ID.showModal() method -->
-    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <!-- modal  -->
     <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
       <div id="modal_dynamic"></div>
     </dialog>
-    <!-- for test  -->
 
     <script src="./script.js"></script>
   </body>
