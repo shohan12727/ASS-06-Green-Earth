@@ -10,13 +10,13 @@ const displayAllTrees = (trees) => {
   const cardContainer = document.getElementById("card_container");
   cardContainer.innerHTML = "";
   trees.forEach((tree) => {
-    const containerDiv = document.createElement('div');
+    const containerDiv = document.createElement("div");
     containerDiv.innerHTML = `
      <div class="card bg-white p-3">
                 <div class="w-full">
                     <img class="w-full h-48 object-cover rounded-md"  src=${tree.image} alt="" />
                 </div>
-              <h2 class="font-bold my-2">${tree.name}</h2>
+              <h2  class="font-bold my-2 cursor-pointer">${tree.name}</h2>
               <p class="text-gray-500  line-clamp-3">
                  ${tree.description}
               </p>
@@ -31,4 +31,64 @@ const displayAllTrees = (trees) => {
   });
 };
 
+const loadAllCatagories = async () => {
+  const response = await fetch(
+    "https://openapi.programming-hero.com/api/categories"
+  );
+  const result = await response.json();
+  displayAllCatagories(result.categories);
+  // console.log();
+};
+
+const displayAllCatagories = (items) => {
+  const allCatagoriesBtn = document.getElementById("allCatagoriesBtn");
+  allCatagoriesBtn.innerHTML = "";
+
+  items.forEach((item) => {
+    const itemContainerDiv = document.createElement("div");
+    itemContainerDiv.innerHTML = `
+    <h2 onclick ="getTreeByCatagoty(${item.id})" class = "hover:bg-green-800 hover:text-white cursor-pointer">${item.category_name}</h2>
+    `;
+    allCatagoriesBtn.appendChild(itemContainerDiv);
+  });
+};
+
+const getTreeByCatagoty = async (id) => {
+  const response = await fetch(
+    `https://openapi.programming-hero.com/api/category/${id}`
+  );
+  const result = await response.json();
+  displayGetTreeByCatagoty(result.plants);
+};
+
+const displayGetTreeByCatagoty = (treeItems) => {
+  const cardContainer = document.getElementById("card_container");
+  cardContainer.innerHTML = "";
+  treeItems.forEach((item) => {
+    const eachCatagoryDiv = document.createElement("div");
+    eachCatagoryDiv.innerHTML = `
+     <div class="card bg-white p-3">
+                <div class="w-full">
+                    <img class="w-full h-48 object-cover rounded-md"  src=${item.image} alt="" />
+                </div>
+              <h2  class="font-bold my-2 cursor-pointer">${item.name}</h2>
+              <p class="text-gray-500  line-clamp-3">
+                 ${item.description}
+              </p>
+              <div class="flex justify-between items-center mt-3">
+                <h3 class="bg-[#DCFCE7] text-[#15803D] rounded-xl px-3">${item.category}</h3>
+                <p class="font-bold">${item.price}</p>
+              </div>
+              <button class="bg-[#15803D] border text-white rounded-2xl  px-4 py-1 mt-3">Add to Cart</button>
+            </div>
+    `;
+
+    cardContainer.appendChild(eachCatagoryDiv);
+  });
+};
+
+loadAllCatagories(); // just for check     --
+
 loadAllTrees();
+
+// pending : hover all catagory btn,, active btn , modal, readme.md
