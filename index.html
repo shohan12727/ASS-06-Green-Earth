@@ -99,7 +99,7 @@
             <h2
               onclick="loadAllTrees()"
               id="all_trees_btn"
-              class="border border-red-600 mb-2 cursor-pointer"
+              class="mb-2 hover:bg-green-800 bg-green-600 text-white p-2 rounded hover:text-white cursor-pointer"
             >
               All Trees
             </h2>
@@ -114,6 +114,7 @@
           >
             <!-- card  -->
             <!-- js here  -->
+            <div id="modalContainer"></div>
           </main>
           <!-- add to cart summary  -->
           <aside></aside>
@@ -138,6 +139,16 @@
         </div>
       </main>
     </section>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+      <div id="modal_dynamic"></div>
+    </dialog>
+    <!-- for test  -->
+
     <script src="./script.js"></script>
   </body>
 </html>
