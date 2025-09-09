@@ -27,7 +27,7 @@ const displayAllTrees = (trees) => {
                 <h3 class="bg-[#DCFCE7] text-[#15803D] rounded-xl px-3">${tree.category}</h3>
                 <p class="font-bold">${tree.price}</p>
               </div>
-              <button class="bg-[#15803D] border text-white rounded-2xl  px-4 py-1 mt-3">Add to Cart</button>
+              <button onclick="handleAddToCart('${tree.name}','${tree.price}')" class="bg-[#15803D] border text-white rounded-2xl  px-4 py-1 mt-3">Add to Cart</button>
             </div>
     `;
     cardContainer.appendChild(containerDiv);
@@ -113,12 +113,44 @@ const displayGetTreeByCatagoty = (treeItems) => {
                 <h3 class="bg-[#DCFCE7] text-[#15803D] rounded-xl px-3">${item.category}</h3>
                 <p class="font-bold">${item.price}</p>
               </div>
-              <button class="bg-[#15803D] border text-white rounded-2xl  px-4 py-1 mt-3">Add to Cart</button>
+              <button onclick="handleAddToCart('${item.name}','${item.price}')" class="bg-[#15803D] border text-white rounded-2xl  px-4 py-1 mt-3">Add to Cart</button>
             </div>
     `;
 
     cardContainer.appendChild(eachCatagoryDiv);
   });
+};
+
+let total = 0;
+const handleAddToCart = (treeName, treeprice) => {
+  //  console.log(treeName, treeprice);
+  const summaryCartContainer = document.getElementById(
+    "summary_cart_container"
+  );
+  const newDiv = document.createElement("div");
+  newDiv.innerHTML = `
+  <div 
+                class="summaryContain flex justify-between bg-[#F0FDF4] items-center p-2 rounded"
+              >
+                <div>
+                  <h1 class="font-bold">${treeName}</h1>
+                  <p class="text-gray-400">${treeprice} x 1</p>
+                </div>
+                <p  onclick="handleCancelCart()" class="text-gray-400 cursor-pointer">X</p>
+              </div>
+              
+  `;
+  summaryCartContainer.appendChild(newDiv);
+  total = total + Number(treeprice);
+  const totalPrice = document.getElementById("total_price");
+  totalPrice.innerText = total;
+};
+
+const handleCancelCart = () => {
+  const summaryContain = document.getElementsByClassName("summaryContain");
+  const get = summaryContain[0];
+  //  console.log(get);
+  get.remove();
 };
 
 const manageSpinnner = (status) => {
@@ -130,9 +162,8 @@ const manageSpinnner = (status) => {
     document.getElementById("card_container").classList.remove("hidden");
   }
 };
-
 loadAllCatagories(); // just for check     --
 
 loadAllTrees();
 
-// pending : hover all catagory btn,, active btn , modal, readme.md
+// pending : hover all , active btn , readme.md

@@ -108,6 +108,8 @@
             </div>
           </aside>
           <!-- cards in the middle section  -->
+
+          <!-- for spinning  -->
           <div
             id="spin_container"
             class="flex justify-center items-center col-span-3"
@@ -116,16 +118,28 @@
           </div>
           <main
             id="card_container"
-            class="md:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-4 mt-7"
+            class="md:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-4"
           >
             <!-- card  -->
             <!-- js here  -->
-            <!-- for spinning  -->
 
             <div id="modalContainer"></div>
           </main>
           <!-- add to cart summary  -->
-          <aside></aside>
+          <aside class="bg-white rounded-xl p-3">
+            <h2 class="font-bold text-xl mb-2">Your Cart</h2>
+            <!-- cards  -->
+            <div  id="summary_cart_container" class="space-y-2">
+               <!-- summary cart  js here -->
+            </div>
+            <!-- total calculation  -->
+            <div
+              class="flex justify-between mt-3 p-1 border-t border-t-gray-400"
+            >
+              <p class="font-bold">Total:</p>
+              <p class="font-bold">৳ <span id="total_price">00</span></p>
+            </div>
+          </aside>
         </div>
 
         <!-- campaign section  -->
@@ -217,15 +231,19 @@
             <option value="Medicinal Tree"></option>
             <option value="Bamboo"></option>
           </datalist>
-          <button class="text-center w-full  block btn  text-[#15803D] bg-[#FACC15]">Donate Now</button>
+          <button
+            class="text-center w-full block btn text-[#15803D] bg-[#FACC15]"
+          >
+            Donate Now
+          </button>
         </div>
       </div>
     </footer>
 
     <section class="bg-[#14532D] p-3">
-           <div class="text-center text-white">
-                  © 2025 Green Earth. All Rights Reserved.
-           </div>
+      <div class="text-center text-white">
+        © 2025 Green Earth. All Rights Reserved.
+      </div>
     </section>
 
     <!-- modal  -->
