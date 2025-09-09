@@ -129,13 +129,16 @@ const displayGetTreeByCatagoty = (treeItems) => {
   });
 };
 
+let cartItemId = 0;
 let total = 0;
 const handleAddToCart = (treeName, treeprice) => {
   //  console.log(treeName, treeprice);
   const summaryCartContainer = document.getElementById(
     "summary_cart_container"
   );
+  const uniqueId = `cart-item-${cartItemId++}`; // every item er jonno ekta unique id toiri hobe ekhane
   const newDiv = document.createElement("div");
+  newDiv.id = uniqueId;
   newDiv.innerHTML = `
   <div 
                 class="summaryContain flex justify-between bg-[#F0FDF4] items-center p-2 rounded"
@@ -144,21 +147,33 @@ const handleAddToCart = (treeName, treeprice) => {
                   <h1 class="font-bold">${treeName}</h1>
                   <p class="text-gray-400">${treeprice} x 1</p>
                 </div>
-                <p  onclick="handleCancelCart()" class="text-gray-400 cursor-pointer">X</p>
+                <p  onclick="handleCancelCart('${uniqueId}', ${Number(
+    treeprice
+  )})" class="text-gray-400 cursor-pointer">X</p>
               </div>
               
   `;
   summaryCartContainer.appendChild(newDiv);
   total = total + Number(treeprice);
-  const totalPrice = document.getElementById("total_price");
-  totalPrice.innerText = total;
+  updateTotalPrice();
 };
 
-const handleCancelCart = () => {
-  const summaryContain = document.getElementsByClassName("summaryContain");
-  const get = summaryContain[0];
+const handleCancelCart = (cartItemId, itemPrice) => {
+  const cartItem = document.getElementById(cartItemId);
+  if (cartItem) {
+    cartItem.remove();
+    // Deduct the price from total
+    total -= itemPrice;
+    updateTotalPrice();
+  }
+  // const summaryContain = document.getElementsByClassName("summaryContain");
+  // const get = summaryContain[0];
   //  console.log(get);
-  get.remove();
+  // get.remove();
+};
+const updateTotalPrice = () => {
+  const totalPrice = document.getElementById("total_price");
+  totalPrice.innerText = total;
 };
 
 const removeActive = () => {
@@ -166,7 +181,6 @@ const removeActive = () => {
   const categoryButtons = document.querySelectorAll(".category-btn");
   categoryButtons.forEach((btn) => btn.classList.remove("active"));
 };
-// removeActive()
 
 const manageSpinnner = (status) => {
   if (status == true) {
@@ -180,5 +194,3 @@ const manageSpinnner = (status) => {
 loadAllCatagories(); // just for check     --
 
 loadAllTrees();
-
-// pending : hover all , active btn , readme.md
