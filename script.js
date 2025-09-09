@@ -1,4 +1,6 @@
 const loadAllTrees = () => {
+  removeActive();
+  document.getElementById("all_trees_btn").classList.add("active");
   manageSpinnner(true);
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((response) => response.json())
@@ -70,6 +72,8 @@ const loadAllCatagories = async () => {
     "https://openapi.programming-hero.com/api/categories"
   );
   const result = await response.json();
+  // removeActive();
+  // const all_calagory_btn =  document.getElementById(`all_calagory_btn$`)
   displayAllCatagories(result.categories);
 };
 
@@ -79,13 +83,17 @@ const displayAllCatagories = (items) => {
   items.forEach((item) => {
     const itemContainerDiv = document.createElement("div");
     itemContainerDiv.innerHTML = `
-    <h2 onclick ="getTreeByCatagoty(${item.id})" class = "hover:bg-green-800  p-2 rounded hover:text-white cursor-pointer">${item.category_name}</h2>
+    <h2 onclick="getTreeByCatagoty(${item.id})" id="category_btn_${item.id}" class="category-btn hover:bg-green-800  p-2 rounded hover:text-white cursor-pointer">${item.category_name}</h2>
     `;
     allCatagoriesBtn.appendChild(itemContainerDiv);
   });
 };
 
 const getTreeByCatagoty = async (id) => {
+  removeActive();
+
+  // Add active class to clicked category button
+  document.getElementById(`category_btn_${id}`).classList.add("active");
   manageSpinnner(true);
   const response = await fetch(
     `https://openapi.programming-hero.com/api/category/${id}`
@@ -152,6 +160,13 @@ const handleCancelCart = () => {
   //  console.log(get);
   get.remove();
 };
+
+const removeActive = () => {
+  document.getElementById("all_trees_btn").classList.remove("active");
+  const categoryButtons = document.querySelectorAll(".category-btn");
+  categoryButtons.forEach((btn) => btn.classList.remove("active"));
+};
+// removeActive()
 
 const manageSpinnner = (status) => {
   if (status == true) {
