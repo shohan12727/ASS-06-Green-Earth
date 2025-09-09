@@ -79,7 +79,7 @@ const displayAllCatagories = (items) => {
   items.forEach((item) => {
     const itemContainerDiv = document.createElement("div");
     itemContainerDiv.innerHTML = `
-    <h2 onclick ="getTreeByCatagoty(${item.id})" class = "hover:bg-green-800 bg-green-600 text-white p-2 rounded hover:text-white cursor-pointer">${item.category_name}</h2>
+    <h2 onclick ="getTreeByCatagoty(${item.id})" class = "hover:bg-green-800  p-2 rounded hover:text-white cursor-pointer">${item.category_name}</h2>
     `;
     allCatagoriesBtn.appendChild(itemContainerDiv);
   });
